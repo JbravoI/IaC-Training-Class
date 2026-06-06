@@ -20,23 +20,22 @@ module appservice './Resources/appservice.bicep' = {
     CAFPrefix: CAFPrefix
     location: location
     tags: tags
-    skuName: 'S1'
   }
   dependsOn: [
   ]
 }
 
-//Virtual Network
-module v............ './Resources/virtualNetwork.bicep' = {
+// //Virtual Network
+// module v............ './Resources/virtualNetwork.bicep' = {
 
-}
+// }
 
-//Public Ip
-module v............ './Resources/publicIp.bicep' = {
+// //Public Ip
+// module v............ './Resources/publicIp.bicep' = {
 
-}
+// }
 
-//Virtual Machine
-module v............ './Resources/virtualMachine.bicep' = {
+// //Virtual Machine
+// module v............ './Resources/virtualMachine.bicep' = {
 
-}
+// }

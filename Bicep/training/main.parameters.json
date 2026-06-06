@@ -2,6 +2,12 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "CAFPrefix": {
+      "value": "test"
+    },
+    "resourceGroupName": {
+      "value": "testrg"
+    },
     "subscriptionId": {
       "value": "87945aaf-ca4b-431e-9759-6abed1a9dcda"
     },
@@ -9,22 +15,10 @@
       "value": "dev"
     },
     "location": {
-      "value": "eastus2"
+      "value": "westus2"
     },
     "customerName": {
       "value": "devopsbootcamp"
-    },
-    "addressSpacePrefix": {
-      "value": "10.1"
-    },
-    "privateDNSZoneNameKeyVault": {
-      "value": "Not Needed"
-    },
-    "addressSpace": {
-      "value": "10.1.4.0/22"
-    },
-    "thirdOctet": {
-      "value": "4"
     },
     "nameSeparator": {
       "value": "-"
