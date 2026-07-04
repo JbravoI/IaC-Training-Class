@@ -5,8 +5,11 @@ param nameSeparator string
 
 param appServicePlanName string = '${CAFPrefix}${nameSeparator}asp'
 param webAppName string = '${CAFPrefix}${nameSeparator}app221'
-param runtimeStack string = 'NODE|18-lts'
+param netFrameworkVersion string = 'v8.0'   // Windows .NET version
+param runtimeStack string = '.NET|8-lts'    // used only if osType == 'linux'
 param osType string = 'windows'
+
+var isLinux = osType == 'linux'
 
 // App Service Plan - Free Tier (F1)
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
@@ -18,9 +21,9 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
     tier: 'Free'
     capacity: 1
   }
-  kind: osType
+  kind: isLinux ? 'linux' : 'app'
   properties: {
-    reserved: osType == 'linux'
+    reserved: isLinux
   }
 }
 
@@ -29,13 +32,13 @@ resource webApp 'Microsoft.Web/sites@2022-09-01' = {
   name: webAppName
   location: location
   tags: tags
-  kind: osType
+  kind: isLinux ? 'app,linux' : 'app'
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      linuxFxVersion: osType == 'linux' ? runtimeStack : null
-      nodeVersion: osType == 'windows' ? '~18' : null
-      alwaysOn: false  // ❌ Not supported on Free tier
+      linuxFxVersion: isLinux ? runtimeStack : null
+      netFrameworkVersion: isLinux ? null : netFrameworkVersion
+      alwaysOn: false  // Not supported on Free tier
     }
     httpsOnly: true
   }
