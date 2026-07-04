@@ -70,9 +70,10 @@ jobs:
 
       - name: Checking Preset working Directory
         run: |
-            echo "Here`s my present working directory"
-            pwd
-            echo "listing items in my pwd"
+          echo "Here`s my present working directory"
+          pwd
+          echo "listing items in my pwd"
+          ls -la
 
 
       # - name: Deploy Bicep
