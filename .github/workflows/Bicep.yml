@@ -69,7 +69,7 @@ jobs:
               --name DEPLOYMENT_BICEP \
               --location eastus2 \
               --template-file "${{ env.TEMPLATE_FILE }}" \
-              --parameters "${{ env.PARAMATER_FILE }}" \
+              --parameters "${{ env.PARAMETER_FILE }}" \
               --parameters subscriptionId=${{ secrets.subscription_id }} \
               --only-show-errors --output table
               
