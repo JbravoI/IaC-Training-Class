@@ -35,7 +35,8 @@ jobs:
         run: |
           echo "Here is my present working directory"
           pwd
-          echo "Listing items in my pwd"
+          echo "Listing items in my bicep"
+          cd ./Bicep/training/
           ls -la
           
       - name: Build Bicep template
@@ -68,7 +69,7 @@ jobs:
             --tenant ${{ secrets.tenant }}
           az account set --subscription ${{ secrets.subscription_id }}
       #Deploy Bicep at tenant scope
-      
+
       - name: Checking Present Working Directory
         run: |
           echo "Here's my present working directory"
