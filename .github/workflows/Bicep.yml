@@ -30,6 +30,12 @@ jobs:
             --password ${{ secrets.password }} \
             --tenant ${{ secrets.tenant }}
           az account set --subscription ${{ secrets.subscription_id }}
+
+      - name: Checking Preset working Directory
+        run: |
+            echo "Here`s my present working directory"
+            pwd
+            echo "listing items in my pwd"
           
       - name: Build Bicep template
         id: build_bicep
@@ -62,15 +68,22 @@ jobs:
           az account set --subscription ${{ secrets.subscription_id }}
       #Deploy Bicep at tenant scope
 
-      - name: Deploy Bicep
+      - name: Checking Preset working Directory
         run: |
-          az deployment sub create \
-              --name DEPLOYMENT_BICEP \
-              --location eastus2 \
-              --template-file TEMPLATE_FILE \
-              --parameters @main.parameters.json \
-              --parameters subscriptionId=${{ secrets.subscription_id }} \
-              --only-show-errors --output table
+            echo "Here`s my present working directory"
+            pwd
+            echo "listing items in my pwd"
+
+
+      # - name: Deploy Bicep
+      #   run: |
+      #     az deployment sub create \
+      #         --name DEPLOYMENT_BICEP \
+      #         --location eastus2 \
+      #         --template-file TEMPLATE_FILE \
+      #         --parameters @main.parameters.json \
+      #         --parameters subscriptionId=${{ secrets.subscription_id }} \
+      #         --only-show-errors --output table
               
       - name: Azure Logout
         run: az logout
