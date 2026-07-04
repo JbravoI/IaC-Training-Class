@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  TEMPLATE_FILE: main.bicep
+  TEMPLATE_FILE: ./Bicep/training/main.bicep
 
 jobs:
   Build:
@@ -30,20 +30,10 @@ jobs:
             --password ${{ secrets.password }} \
             --tenant ${{ secrets.tenant }}
           az account set --subscription ${{ secrets.subscription_id }}
-
-      - name: Checking Present Working Directory
-        run: |
-          echo "Listing items in my bicep"
-          cd ./Bicep/training/
-          ls -la
-          echo "Here is my present working directory"
-          pwd
           
       - name: Build Bicep template
         id: build_bicep
         run: |
-          echo "Listing items in my bicep"
-          cd ./Bicep/training/
           mkdir -p build
           OUTPUT_FILE="build/template.json"
           az bicep build --file "${{ env.TEMPLATE_FILE }}" --outdir build
@@ -70,21 +60,10 @@ jobs:
             --password ${{ secrets.password }} \
             --tenant ${{ secrets.tenant }}
           az account set --subscription ${{ secrets.subscription_id }}
-      #Deploy Bicep at tenant scope
-
-      - name: Checking Present Working Directory
-        run: |
-          echo "Listing items in my bicep"
-          cd ./Bicep/training/
-          ls -la
-          echo "Here is my present working directory"
-          pwd
-          
+      #Deploy Bicep at tenant scope          
 
       - name: Deploy Bicep
         run: |
-          echo "Listing items in my bicep"
-          cd ./Bicep/training/
           az deployment sub create \
               --name DEPLOYMENT_BICEP \
               --location eastus2 \
