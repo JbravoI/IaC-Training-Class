@@ -42,6 +42,8 @@ jobs:
       - name: Build Bicep template
         id: build_bicep
         run: |
+          echo "Listing items in my bicep"
+          cd ./Bicep/training/
           mkdir -p build
           OUTPUT_FILE="build/template.json"
           az bicep build --file "${{ env.TEMPLATE_FILE }}" --outdir build
@@ -81,6 +83,8 @@ jobs:
 
       - name: Deploy Bicep
         run: |
+          echo "Listing items in my bicep"
+          cd ./Bicep/training/
           az deployment sub create \
               --name DEPLOYMENT_BICEP \
               --location eastus2 \
