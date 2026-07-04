@@ -61,8 +61,8 @@ jobs:
             --password ${{ secrets.password }} \
             --tenant ${{ secrets.tenant }}
           az account set --subscription ${{ secrets.subscription_id }}
+    
       #Deploy Bicep at tenant scope          
-
       - name: Deploy Bicep
         run: |
           az deployment sub create \
