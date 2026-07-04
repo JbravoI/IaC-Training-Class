@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  TEMPLATE_FILE: ./Bicep/training/main.bicep
+  TEMPLATE_FILE: main.bicep
 
 jobs:
   Build:
@@ -33,11 +33,11 @@ jobs:
 
       - name: Checking Present Working Directory
         run: |
-          echo "Here is my present working directory"
-          pwd
           echo "Listing items in my bicep"
           cd ./Bicep/training/
           ls -la
+          echo "Here is my present working directory"
+          pwd
           
       - name: Build Bicep template
         id: build_bicep
@@ -72,21 +72,22 @@ jobs:
 
       - name: Checking Present Working Directory
         run: |
-          echo "Here's my present working directory"
-          pwd
-          echo "Listing items in my pwd"
+          echo "Listing items in my bicep"
+          cd ./Bicep/training/
           ls -la
+          echo "Here is my present working directory"
+          pwd
+          
 
-
-      # - name: Deploy Bicep
-      #   run: |
-      #     az deployment sub create \
-      #         --name DEPLOYMENT_BICEP \
-      #         --location eastus2 \
-      #         --template-file TEMPLATE_FILE \
-      #         --parameters @main.parameters.json \
-      #         --parameters subscriptionId=${{ secrets.subscription_id }} \
-      #         --only-show-errors --output table
+      - name: Deploy Bicep
+        run: |
+          az deployment sub create \
+              --name DEPLOYMENT_BICEP \
+              --location eastus2 \
+              --template-file TEMPLATE_FILE \
+              --parameters @main.parameters.json \
+              --parameters subscriptionId=${{ secrets.subscription_id }} \
+              --only-show-errors --output table
               
       - name: Azure Logout
         run: az logout
