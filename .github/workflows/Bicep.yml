@@ -31,11 +31,11 @@ jobs:
             --tenant ${{ secrets.tenant }}
           az account set --subscription ${{ secrets.subscription_id }}
 
-      - name: Checking Preset working Directory
+      - name: Checking Present Working Directory
         run: |
-          echo "Here`s my present working directory"
+          echo "Here is my present working directory"
           pwd
-          echo "listing items in my pwd"
+          echo "Listing items in my pwd"
           ls -la
           
       - name: Build Bicep template
@@ -68,12 +68,12 @@ jobs:
             --tenant ${{ secrets.tenant }}
           az account set --subscription ${{ secrets.subscription_id }}
       #Deploy Bicep at tenant scope
-
-      - name: Checking Preset working Directory
+      
+      - name: Checking Present Working Directory
         run: |
-          echo "Here`s my present working directory"
+          echo "Here's my present working directory"
           pwd
-          echo "listing items in my pwd"
+          echo "Listing items in my pwd"
           ls -la
 
 
