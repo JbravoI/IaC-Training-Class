@@ -8,7 +8,7 @@ on:
 
 env:
   TEMPLATE_FILE: ./Bicep/training/main.bicep
-  PARAMETER_FILE: ./Bicep/training/@main.parameters.json
+  PARAMETER_FILE: ./Bicep/training/main.parameters.json
 
 jobs:
   Build:
